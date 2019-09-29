@@ -1,0 +1,60 @@
+apply plugin: 'com.android.library'
+apply plugin: 'maven'
+apply plugin: 'maven-publish'
+
+def publishedGroupId = 'com.sdk.crash'
+def artifact_Id = 'crash-reporter'
+def artifact_version = '0.2.0-SNAPSHOT'
+
+android {
+    compileSdkVersion 28
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String","keyInfo","\"75fb25428f7f6731ab9deaa955ee4691\"")
+        }
+        debug{
+            buildConfigField("String","keyInfo","\"75fb25428f7f6731ab9deaa955ee4691\"")
+        }
+    }
+
+}
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+    testCompile 'junit:junit:4.12'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
+}
+
+uploadArchives {
+    repositories {
+//        mavenDeployer {
+//            snapshotRepository(url: "${project.ext.snapshotUrl}") {
+//                authentication(userName: "${project.ext.mavenName}", password: "${project.ext.mavenPass}")
+//            }
+//
+//            repository(url: "${project.ext.mavenUrl}") {
+//                authentication(userName: "${project.ext.mavenName}", password: "${project.ext.mavenPass}")
+//            }
+//
+//            pom.project {
+//                groupId publishedGroupId
+//                artifactId artifact_Id
+//                version artifact_version
+//                packaging 'aar'
+//                description 'crash report library'
+//            }
+//        }
+    }
+}
