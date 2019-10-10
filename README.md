@@ -6,7 +6,7 @@
 如何使用?
 
 一.添加依赖
-implementation "com.sdk.crash:crash-reporter:0.1.9-SNAPSHOT"
+implementation project(':CrashReport')
 
 二.接入
 CrashReport.instance().setUploaderListener(new ErrorInfoUploaderListener() {
@@ -19,8 +19,6 @@ CrashReport.instance().setUploaderListener(new ErrorInfoUploaderListener() {
     }
 }).initCrashReport(this, BuildConfig.DEBUG);
 
-如果需要测试可以使用如下，会上传至rocket小火箭
-CrashReport.instance().setUploaderListener(new CrashRocketChatUploader());
 
 三.设置strategy规则，通过Builder方式构建,有一些一些列参数,如果不想配置可默认：
     /**
